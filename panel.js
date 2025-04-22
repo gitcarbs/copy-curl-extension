@@ -99,27 +99,33 @@ function createRequestRow(
         }
     });
 
-    // Create view payload button if needed
-    let viewPayloadBtn = null;
-    if (postData && postData.trim()) {
-        viewPayloadBtn = createButton("Req", () => {
-            try {
-                const formattedJson = formatJSON(postData);
-                createModal(
-                    "payload-modal",
-                    "Request Payload",
-                    formattedJson,
-                    "Copy Payload"
-                );
-            } catch (e) {
-                alert("Failed to parse payload as JSON: " + e.message);
-            }
-        });
-        row.appendChild(viewPayloadBtn);
+    // Always create view payload button for consistent spacing
+    const viewPayloadBtn = createButton("Req", () => {
+        if (!postData || !postData.trim()) {
+            alert("No request payload data available.");
+            return;
+        }
+        try {
+            const formattedJson = formatJSON(postData);
+            createModal(
+                "payload-modal",
+                "Request Payload",
+                formattedJson,
+                "Copy Payload"
+            );
+        } catch (e) {
+            alert("Failed to parse payload as JSON: " + e.message);
+        }
+    });
+
+    // Disable the button if no payload data
+    if (!postData || !postData.trim()) {
+        viewPayloadBtn.disabled = true;
+        viewPayloadBtn.classList.add("disabled-btn");
     }
 
-    // Append all elements to the row in desired order
-    if (viewPayloadBtn) row.appendChild(viewPayloadBtn);
+    // Append all elements to the row in desired order - always include viewPayloadBtn
+    row.appendChild(viewPayloadBtn);
     row.appendChild(viewResponseBtn);
     row.appendChild(methodEl);
     row.appendChild(urlEl);
