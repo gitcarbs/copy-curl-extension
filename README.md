@@ -4,6 +4,8 @@
 
 The **XHR Request Viewer** is a Chrome extension designed to help developers view and copy XHR (XMLHttpRequest) requests as cURL commands. This tool simplifies debugging and testing by allowing developers to easily replicate network requests in their terminal or other tools.
 
+![alt text](image.png)
+
 ## Features
 
 - **View XHR Requests**: Inspect all XHR requests made by a webpage.
