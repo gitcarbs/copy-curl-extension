@@ -1,0 +1,22 @@
+{
+    "manifest_version": 3,
+    "name": "XHR Request Viewer",
+    "version": "1.0",
+    "description": "View and copy XHR requests as cURL commands.",
+    "permissions": [
+        "webRequest",
+        "webRequestBlocking",
+        "activeTab",
+        "clipboardWrite"
+    ],
+    "host_permissions": ["<all_urls>"],
+    "background": {
+        "service_worker": "background.js"
+    },
+    "icons": {
+        "16": "icon.png",
+        "48": "icon.png",
+        "128": "icon.png"
+    },
+    "devtools_page": "devtools.html"
+}
